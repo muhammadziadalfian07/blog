@@ -5,7 +5,7 @@
 @endsection
 
 @section('subjudul')
-Category
+Kategori
 @endsection
 
 @section('content')
