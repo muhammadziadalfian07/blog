@@ -20,4 +20,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::resource('/category', 'CategoryController');
+Route::resource('/category', 'CategoryController')->except([
+    'show'
+]);
+
+Route::resource('/tag', 'TagController')->except([
+    'show'
+]);
