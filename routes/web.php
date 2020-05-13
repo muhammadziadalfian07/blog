@@ -27,3 +27,10 @@ Route::resource('/category', 'CategoryController')->except([
 Route::resource('/tag', 'TagController')->except([
     'show'
 ]);
+
+Route::resource('/post', 'PostController')->except([
+    'show'
+]);
+Route::get('/post/hapus', 'PostController@tampilHapus')->name('post.tampilHapus');
+Route::get('/post/restore/{id}', 'PostController@restore')->name('post.restore');
+Route::delete('/post/delete/{id}', 'PostController@delete')->name('post.forceDelete');
