@@ -33,6 +33,7 @@ Post
                                 <th>No</th>
                                 <th>Gambar</th>
                                 <th>Name</th>
+                                <th>Penulis</th>
                                 <th>Katgori</th>
                                 <th>Tag</th>
                                 <th>Action</th>
@@ -51,12 +52,13 @@ Post
                                     @endif
                                 </td>
                                 <td>{{$row->title}}</td>
+                                <td>{{$row->user->name}}</td>
                                 <td>{{$row->category->name}}</td>
                                 <td>
                                     @foreach ($row->tag as $tags)
-                                        
-                                            <span class="badge badge-secondary">{{$tags->name}}</span>
-                                        
+                                        <ul>
+                                            <h6><span class="badge badge-info">{{$tags->name}}</span></h6>
+                                        </ul>
                                     @endforeach
                                 </td>
                                 <td>

@@ -10,6 +10,7 @@ use File;
 use Image;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -31,9 +32,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tag = Tag::all();
+        $tags = Tag::all();
         $category = Category::all();
-        return view('admin.post.create', compact('category', 'tag'));
+        return view('admin.post.create', compact('category', 'tags'));
     }
 
     /**
@@ -66,7 +67,8 @@ class PostController extends Controller
                 'category_id' => $request->category_id,
                 'content' => $request->content,
                 'photo' => $photo,
-                'slug' => str::slug($request->title)
+                'slug' => str::slug($request->title),
+                'user_id' => Auth::id(),
             ]);
 
             //menyimpan tag

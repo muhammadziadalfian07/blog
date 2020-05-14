@@ -12,25 +12,38 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'BlogController@index');
+
+
+Route::group(['middleware' => 'auth'], function () {
+    //home
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    //route category
+    Route::resource('/category', 'CategoryController')->except([
+        'show'
+    ]);
+
+    //route tag
+    Route::resource('/tag', 'TagController')->except([
+        'show'
+    ]);
+
+    //route post
+    Route::resource('/post', 'PostController')->except([
+        'show'
+    ]);
+    Route::get('/post/hapus', 'PostController@tampilHapus')->name('post.tampilHapus');
+    Route::get('/post/restore/{id}', 'PostController@restore')->name('post.restore');
+    Route::delete('/post/delete/{id}', 'PostController@delete')->name('post.forceDelete');
+
+    //route user
+    Route::resource('/user', 'UserController')->except([
+        'show'
+    ]);
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
 
-Route::resource('/category', 'CategoryController')->except([
-    'show'
-]);
 
-Route::resource('/tag', 'TagController')->except([
-    'show'
-]);
 
-Route::resource('/post', 'PostController')->except([
-    'show'
-]);
-Route::get('/post/hapus', 'PostController@tampilHapus')->name('post.tampilHapus');
-Route::get('/post/restore/{id}', 'PostController@restore')->name('post.restore');
-Route::delete('/post/delete/{id}', 'PostController@delete')->name('post.forceDelete');
+Auth::routes();
