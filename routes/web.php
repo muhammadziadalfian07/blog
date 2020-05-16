@@ -13,7 +13,14 @@
 
 
 Route::get('/', 'BlogController@index');
+// route::get('/isipost', function () {
+//     return view('blog.isi_post');
+// });
 
+Route::get('/posts/{slug}', 'BlogController@isi_blog')->name('isi.post');
+Route::get('/list-post', 'BlogController@listBlog')->name('list.blog');
+Route::get('/post-category/{category}', 'BlogController@listCategory')->name('blog.category');
+Route::get('/cari', 'BlogController@cari')->name('blog.cari');
 
 Route::group(['middleware' => 'auth'], function () {
     //home

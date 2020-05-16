@@ -66,7 +66,7 @@ Edit Post
 
                         <div class="form-group">
                             <label>kontent</label>
-                            <textarea class="form-control" name="content" id="" cols="50" rows="50">{{$post->content}}</textarea>
+                            <textarea class="form-control" name="content" id="konten" cols="50" rows="50">{{$post->content}}</textarea>
                             <p class="text-danger">{{$errors->first('content')}}</p>
                         </div>
 
@@ -91,5 +91,16 @@ Edit Post
             </div>
         </div>
     </div>
-
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script>
+      var konten = document.getElementById("konten");
+        CKEDITOR.replace(konten,{
+        language:'en-gb'
+      });
+      CKEDITOR.config.allowedContent = true;
+    </script>
+    <link href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}" rel="stylesheet">
+    
+    <script src="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     @endsection
